@@ -1,0 +1,33 @@
+{
+  "name": "enyata-backend_project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Oluwakemi96/Enyata-Backend_Project.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Oluwakemi96/Enyata-Backend_Project/issues"
+  },
+  "homepage": "https://github.com/Oluwakemi96/Enyata-Backend_Project#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.0",
+    "bluebird": "^3.7.2",
+    "crypto": "^1.0.1",
+    "db-migrate": "^0.11.13",
+    "db-migrate-pg": "^1.2.2",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-validation": "^4.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "pg-promise": "^10.12.0"
+  }
+}
