@@ -19,7 +19,7 @@ const registerUsers = async (req, res) => {
         // delete user[0].password
         return res.status(200).json({
             status: 'Success',
-            message: 'Student Added',
+            message: 'User Added',
             data: user
         })
     } catch (err) {
@@ -28,5 +28,38 @@ const registerUsers = async (req, res) => {
     }
 }
 
+const deleteUser = async (req, res) => {
+    try {
+        const { id } = req.params;
+        await db.none(userQuery.deleteUser, [id])
+        return res.status(200).json({
+            status: 'Success',
+            message: `User with id:${id} deleted`,
+        })
+    } catch (err) {
+        console.log(err)
+        return err;
+    }
+}
 
-module.exports = {registerUsers};
+const fetchAllUsers = async(req, res) => {
+    try {
+        const user = await db.any(userQuery.getAllUsers)
+        console.log(user)
+        return res.status(200).json({
+            status: 'Success',
+            message:'Users Fetched Succesfully',
+            data: user
+        });
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
+
+module.exports = {
+    registerUsers,
+    deleteUser,
+    fetchAllUsers
+};
