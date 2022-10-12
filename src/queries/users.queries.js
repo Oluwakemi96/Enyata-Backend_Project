@@ -28,7 +28,12 @@ const queries = {
     findByEmail: `
     SELECT email_address FROM users
     WHERE email_address = $1
-    `
+    `,
+
+    findById: `
+    SELECT id FROM users
+    WHERE id = $1
+    `,
   }
   
   module.exports = queries;
