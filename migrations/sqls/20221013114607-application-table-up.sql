@@ -9,5 +9,5 @@ CREATE TABLE applications(
   address VARCHAR NOT NULL,
   university VARCHAR NOT NULL,
   course_of_study VARCHAR NOT NULL,
-  cgpa INT NOT NULL
+  cgpa NUMERIC(3,2) NOT NULL
 );
