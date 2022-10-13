@@ -2,7 +2,7 @@ const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
 
 const db = require('../config/config')
-const userQuery = require('../queries/users.queries')
+const userQuery = require('../queries/signup.queries')
 
 const registerUsers = async (req, res) => {
     let { first_name, last_name, email_address, phone_number, password, confirm_password} = req.body;
