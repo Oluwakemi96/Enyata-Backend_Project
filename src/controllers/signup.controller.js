@@ -1,6 +1,4 @@
 const bcrypt = require('bcrypt')
-const jwt = require("jsonwebtoken")
-
 const db = require('../config/config')
 const userQuery = require('../queries/signup.queries')
 
