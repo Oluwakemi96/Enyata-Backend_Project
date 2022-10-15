@@ -29,19 +29,19 @@ const registerUsers = async (req, res) => {
 
 const deleteUser = async (req, res) => {
     try {
-        const { id } = req.params;
+        let { id } = req.params;
         const existingId = await db.any(userQuery.findById, [id]);
-        if (existingId !== id) {
+        if (existingId.length == 0) {
             return res.status(400).json({
                 status: 'Failed',
                 message: `User with id:${id} does not exist`
             })
-        }
-      await db.none(userQuery.deleteUser, [id])
-            return res.status(200).json({
-                status: 'Success',
-                message: `User with id:${id} deleted`,
-            })
+        }await db.none(userQuery.deleteUser, [id])
+                return res.status(200).json({
+                    status: 'Success',
+                    message: `User with id:${id} deleted`,
+                })
+    
     } catch (err) {
         console.log(err)
         return err;
