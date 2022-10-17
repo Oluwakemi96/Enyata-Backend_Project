@@ -1,5 +1,6 @@
 const express = require('express')
 const router = require('./src/routes/user.route')
+const adminRouter = require('./src/routes/admin.route')
 const dotenv = require('dotenv')
 dotenv.config()
 
@@ -19,6 +20,7 @@ app.use(function (req, res, next) {
 })
 
 app.use(router)
+app.use(adminRouter)
 
 app.listen(PORT, () => {
   console.log(`Application running on port: ${PORT}`)
