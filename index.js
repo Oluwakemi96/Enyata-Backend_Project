@@ -23,6 +23,7 @@ app.use(cors({
   origin: "*" ,
   methods: ["GET", "POST", "DELETE", "PATCH", "UPDATE", "OPTIONS", "PUT"]
 }))
+
 app.use(router)
 app.use(adminRouter)
 

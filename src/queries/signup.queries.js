@@ -1,6 +1,15 @@
 const queries = {
     registerUsers: `
-          INSERT INTO users (first_name, last_name, email_address, phone_number, password, confirm_password)
+          INSERT 
+            INTO 
+              users (
+                 first_name, 
+                 last_name, 
+                 email_address,
+                 phone_number, 
+                 password,
+                 confirm_password
+                 )
           VALUES ($1, $2, $3, $4, $5, $6)
           RETURNING *
     `,

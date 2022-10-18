@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const jwt = require("jsonwebtoken")
 const db = require('../config/config')
+const { JWT_SIGN_OPTIONS } = require('../config/jwt')
 const queries = require('../queries/signup.queries')
 
 const login = async (req, res) => {
@@ -22,14 +23,16 @@ const login = async (req, res) => {
                 message: 'Incorrect password'
             })
         }
+
         const sessionToken = jwt.sign(
             {
                 email_address: user.email_address,
-                password: user.password,
-
+                user_id: user.id
             },
-            process.env.JWT_SECRET_KEY
+            process.env.JWT_SECRET_KEY,
+            JWT_SIGN_OPTIONS
         );
+
         delete user[0].password
         return res.status(200).json({
             status: 'Success',
