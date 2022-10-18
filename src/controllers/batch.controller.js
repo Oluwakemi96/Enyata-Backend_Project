@@ -1,11 +1,9 @@
-// const bcrypt = require('bcrypt')
 const db = require('../config/config')
 const queries = require('../queries/batch.queries')
 
 const fetchAllBatches = async(req, res) => {
     try {
         const batch = await db.any(queries.getAllBatches)
-        console.log(batch)
         return res.status(200).json({
             status: 'Success',
             message:'Batch Fetched Succesfully',
@@ -17,17 +15,16 @@ const fetchAllBatches = async(req, res) => {
     }
 }
 const createBatch = async(req, res) => {
-    let {application_closure_date, batch_id, instruction } = req.body
+    let {application_closure_date, batch_id, instruction} = req.body
     try {
-        const existingBatch = await db.any(queries.getOneBatch, [batch_id]);
-        console.log(existingBatch)
-        if (existingBatch){
+        const existingBatch = await db.any(queries.findByBatch, [batch_id]);
+        if (existingBatch.length > 0){
             return res.status(400).json({
                 status: 'failed',
                 message: 'Batch already exists'
             })
         }
-        const batch = await db.any(queries.createBatch, [ application_closure_date, batch_id, instruction]);
+        const batch = await db.any(queries.createBatch,[ application_closure_date, batch_id, instruction]);
             return res.status(200).json({
                 status: 'Success',
                 message: 'Batch added',
