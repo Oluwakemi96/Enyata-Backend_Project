@@ -1,4 +1,4 @@
-const { JWT_SIGN_OPTIONS } = require('../config/jwt');
+const { JWT_SIGN_OPTIONS } = require('../config/jwt')
 
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
