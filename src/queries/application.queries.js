@@ -28,6 +28,24 @@ const applicationsQueries = {
       WHERE 
          email_address = $1
                 `,
+
+   getUserByEmail: `
+      SELECT
+         * 
+      FROM
+         users       
+      WHERE 
+         email_address = $1
+                `,
+
+   getUserById: `
+      SELECT
+         * 
+      FROM
+            users  
+      WHERE 
+         id = $1
+                `,
                   
 getActiveBatch: `
       SELECT 

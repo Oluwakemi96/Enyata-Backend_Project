@@ -3,8 +3,8 @@ const router = express.Router();
 // const cors = require('cors');
 const user = require('../controllers/signup.controller')
 const application = require('../controllers/application.controller')
-const userLogin = require('../controllers/login.controller');
-// const { verifyToken } = require('../middleware/auth.middleware');
+// const userLogin = require('../controllers/login.controller');
+const { verifyToken } = require('../middleware/auth.middleware');
 // const batch = require('../controllers/batch.controller')
 
 
@@ -17,8 +17,8 @@ const userLogin = require('../controllers/login.controller');
 router.post('/signup', user.registerUsers);
 router.delete('/signup/:id', user.deleteUser);
 router.get('/signup', user.fetchAllUsers);
-router.post('/application',  application.addApplication );
-router.post('/login', userLogin.login)
+router.post('/application', verifyToken, application.addApplication );
+router.post('/login', application.login)
 
 
 module.exports = router;
