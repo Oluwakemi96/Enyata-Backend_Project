@@ -58,11 +58,10 @@ const login = async (req, res) => {
 
 
 const addApplication = async(req, res) => {
-  let {upload_CV, upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa} = req.body
+  let {upload_CV, user_id, upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa} = req.body
   let batch = await db.any(applicationsQueries.getActiveBatch)
   batch_id = batch[0].batch_id
   
-  let user_id = req.user.user_id
   console.log(user_id)
     try {
       const existingEmail = await db.any( applicationsQueries.findByEmail, [email_address]);

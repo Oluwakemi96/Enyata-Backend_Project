@@ -12,6 +12,7 @@ const verifyToken = async (req, res, next) => {
     const token = req.headers.authorization.split(' ')[1];
     // Verify token
     jwt.verify(token, process.env.JWT_SECRET_KEY, JWT_SIGN_OPTIONS, (err, decodedToken) =>{
+      // next();
       if(err){
         return res.status(403).json({message: 'Unauthorized access.'})
       }

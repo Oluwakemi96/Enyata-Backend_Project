@@ -4,7 +4,7 @@ const router = express.Router();
 const user = require('../controllers/signup.controller')
 const application = require('../controllers/application.controller')
 // const userLogin = require('../controllers/login.controller');
-const { verifyToken } = require('../middleware/auth.middleware');
+// const { verifyToken } = require('../middleware/auth.middleware');
 // const batch = require('../controllers/batch.controller')
 
 
@@ -17,7 +17,7 @@ const { verifyToken } = require('../middleware/auth.middleware');
 router.post('/signup', user.registerUsers);
 router.delete('/signup/:id', user.deleteUser);
 router.get('/signup', user.fetchAllUsers);
-router.post('/application', verifyToken, application.addApplication );
+router.post('/application', application.addApplication );
 router.post('/login', application.login)
 
 
