@@ -30,24 +30,23 @@ const applicationsQueries = {
    //              `,
 
    
-
    findByEmail: `
-      SELECT
-         email_address 
-      FROM
-         application_entries       
-      WHERE 
-         email_address = $1
-                `,
-
+   SELECT
+   email_address 
+   FROM
+   application_entries       
+   WHERE 
+   email_address = $1
+   `,
+   
    getUserByEmail: `
-      SELECT
-         * 
-      FROM
-         users       
-      WHERE 
-         email_address = $1
-                `,
+   SELECT
+   * 
+   FROM
+   users       
+   WHERE 
+   email_address = $1
+   `,
    // getApplicantByEmail: `
    //    SELECT
    //       * 
@@ -56,24 +55,28 @@ const applicationsQueries = {
    //    WHERE 
    //       email_address = $1
    //              `,
-
+   
    getUserById: `
-      SELECT
-         * 
-      FROM
-            users  
-      WHERE 
-         id = $1
-                `,
+   SELECT
+   * 
+   FROM
+   users  
+   WHERE 
+   id = $1
+   `,
    getApplicantById: `
-      SELECT
-         * 
-      FROM
-            application_entries  
-      WHERE 
-         id = $1
-                `,
-
+   SELECT
+   * 
+   FROM
+   application_entries  
+   WHERE 
+   id = $1
+   `,
+   
+getAllApplicant: `
+               SELECT * FROM application_entries
+               
+   `,
                   
 getActiveBatch: `
       SELECT 

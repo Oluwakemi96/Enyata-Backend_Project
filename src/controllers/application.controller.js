@@ -77,11 +77,42 @@ const getOneApplicant = async(req, res) => {
     }
 }
 
+const fetchAllApplicant = async(req, res) => {
+    try {
+        const applicant = await db.any(`SELECT * FROM application_entries`)
+        console.log(applicant)
+        return res.status(200).json({
+            status: 'success',
+            message: 'applicant fetched successfully',
+            data: applicant
+        })
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
+const getApplicantByBatch = async(req, res) => {
+    let {batch_id} = req.body
+    try {
+        const applicant = await db.oneOrNone(`SELECT batch_id FROM application_entries WHERE batch_id = '${batch_id}'`)
+        console.log(applicant)
+        return res.status(200).json({
+            status: 'success',
+            message: 'applicant fetched successfully',
+            data: applicant
+        })
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
 
 
 module.exports = {
   addApplication,
   addStatus,
-  getOneApplicant
-
+  getOneApplicant,
+  fetchAllApplicant,
+  getApplicantByBatch
 }
