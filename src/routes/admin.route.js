@@ -13,7 +13,7 @@ router.post('/adminLogin', admin.adminLogin)
 router.post('/registerAdmin', admin.registerAdmin)
 router.post('/addStatus', applicationEntries.addStatus)
 router.post('/assessments', assessments.composedAssessments)
-router.get('/oneApplicant', applicationEntries.getOneUser)
+router.get('/oneApplicant', applicationEntries.getOneApplicant)
 router.patch('/updateAdmin/:id', admin.updateAdmin)
 
 module.exports = router;

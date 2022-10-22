@@ -56,7 +56,7 @@ const addStatus = async (req, res) => {
 
 }
 
-const getOneUser = async(req, res) => {
+const getOneApplicant = async(req, res) => {
     let {email_address } = req.body
     try {
         const user = await db.any(`SELECT * 
@@ -82,6 +82,6 @@ const getOneUser = async(req, res) => {
 module.exports = {
   addApplication,
   addStatus,
-  getOneUser
+  getOneApplicant
 
 }
