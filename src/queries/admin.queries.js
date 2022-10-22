@@ -11,6 +11,9 @@ const queries ={
     SELECT * FROM admins 
     WHERE email_address = $1
     `,
+    updateAdmin: `UPDATE admins 
+       SET upload_photo = $1, name = $2, email_address =$3, phone_number = $4, country = $5, address= $6
+          WHERE id = $7;`
 }
 
 

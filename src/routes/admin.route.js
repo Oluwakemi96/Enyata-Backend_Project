@@ -14,5 +14,6 @@ router.post('/registerAdmin', admin.registerAdmin)
 router.post('/addStatus', applicationEntries.addStatus)
 router.post('/assessments', assessments.composedAssessments)
 router.get('/oneApplicant', applicationEntries.getOneUser)
+router.patch('/updateAdmin/:id', admin.updateAdmin)
 
 module.exports = router;
