@@ -20,7 +20,6 @@ const applicationsQueries = {
       RETURNING *
    `,
 
-<<<<<<< HEAD
    // findByEmail: `
    //    SELECT
    //       email_address 
@@ -63,7 +62,7 @@ const applicationsQueries = {
       WHERE 
          id = $1
                 `,
->>>>>>> 675b2657a19ee8e166f20a6acac915cf2fc5e905
+
                   
 getActiveBatch: `
       SELECT 

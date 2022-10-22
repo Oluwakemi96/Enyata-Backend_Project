@@ -18,10 +18,7 @@ const login = async (req, res) => {
         }
 
         const passwordMatch = bcrypt.compareSync(password, user.password);
-<<<<<<< HEAD
 
-=======
->>>>>>> 675b2657a19ee8e166f20a6acac915cf2fc5e905
         if (!passwordMatch) {
             return res.status(400).json({
                 status: 'Failed',
