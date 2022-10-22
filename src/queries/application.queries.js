@@ -20,6 +20,7 @@ const applicationsQueries = {
       RETURNING *
    `,
 
+<<<<<<< HEAD
    // findByEmail: `
    //    SELECT
    //       email_address 
@@ -35,6 +36,34 @@ const applicationsQueries = {
                            WHERE 
                               id = $2 
    `,
+
+   findByEmail: `
+      SELECT
+         email_address 
+      FROM
+         application_entries       
+      WHERE 
+         email_address = $1
+                `,
+
+   getUserByEmail: `
+      SELECT
+         * 
+      FROM
+         users       
+      WHERE 
+         email_address = $1
+                `,
+
+   getUserById: `
+      SELECT
+         * 
+      FROM
+            users  
+      WHERE 
+         id = $1
+                `,
+>>>>>>> 675b2657a19ee8e166f20a6acac915cf2fc5e905
                   
 getActiveBatch: `
       SELECT 
@@ -45,6 +74,7 @@ getActiveBatch: `
          application_closure_date > NOW() :: DATE ORDER BY created_at desc
       LIMIT 
          1; `
+
 }
 
 module.exports = {applicationsQueries};

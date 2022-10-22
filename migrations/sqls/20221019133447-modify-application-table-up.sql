@@ -1,0 +1,1 @@
+ALTER TABLE application_entries RENAME COLUMN email TO email_address;
