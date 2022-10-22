@@ -8,10 +8,11 @@ const assessments = require('../controllers/composed.controller')
 
 
 router.get('/batches', batch.fetchAllBatches)
-router.post('/batches', batch.createBatch)
+router.post('/create_batches', batch.createBatch)
 router.post('/adminLogin', admin.adminLogin)
 router.post('/registerAdmin', admin.registerAdmin)
 router.post('/addStatus', applicationEntries.addStatus)
 router.post('/assessments', assessments.composedAssessments)
+router.get('/oneUser', applicationEntries.getOneUser)
 
 module.exports = router;

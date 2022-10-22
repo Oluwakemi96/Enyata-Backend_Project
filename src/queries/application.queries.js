@@ -29,11 +29,11 @@ const applicationsQueries = {
    //       email_address = $1
    //              `,
 
-   addApplicationStatus: `UPDATE
-                           application_entries
-                          SET status = $1
-                           WHERE 
-                              id = $2 
+   addApplicationStatus: `INSERT 
+                           INTO
+                           application_entries(status)
+                          VALUES($1)
+                          RETURNING *
    `,
 
    findByEmail: `
@@ -53,12 +53,28 @@ const applicationsQueries = {
       WHERE 
          email_address = $1
                 `,
+   // getApplicantByEmail: `
+   //    SELECT
+   //       * 
+   //    FROM
+   //       application_entries       
+   //    WHERE 
+   //       email_address = $1
+   //              `,
 
    getUserById: `
       SELECT
          * 
       FROM
             users  
+      WHERE 
+         id = $1
+                `,
+   getApplicantById: `
+      SELECT
+         * 
+      FROM
+            application_entries  
       WHERE 
          id = $1
                 `,
