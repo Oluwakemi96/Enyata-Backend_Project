@@ -1,7 +1,8 @@
 const { JWT_SIGN_OPTIONS } = require('../config/jwt');
-
 const jwt = require('jsonwebtoken')
 require('dotenv').config()
+
+
 const verifyToken = async (req, res, next) => {
   const tokenExists = req.headers && req.headers.authorization;
   if(tokenExists){
@@ -16,7 +17,7 @@ const verifyToken = async (req, res, next) => {
       return next()
     })
   }else{
-    return res.status(403).json({message: 'Missinng token'})
+    return res.status(403).json({message: 'Missing token'})
   }
 }
 

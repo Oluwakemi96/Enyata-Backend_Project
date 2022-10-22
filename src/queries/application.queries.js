@@ -8,7 +8,7 @@ const applicationsQueries = {
                upload_photo, 
                first_name, 
                last_name,
-               email, 
+               email_address, 
                date_of_birth, 
                address, 
                university, 
@@ -20,14 +20,21 @@ const applicationsQueries = {
       RETURNING *
    `,
 
-   findByEmail: `
-      SELECT
-         email 
-      FROM
-         application_entries       
-      WHERE 
-         email = $1
-                `,
+   // findByEmail: `
+   //    SELECT
+   //       email_address 
+   //    FROM
+   //       application_entries       
+   //    WHERE 
+   //       email_address = $1
+   //              `,
+
+   addApplicationStatus: `UPDATE
+                           application_entries
+                          SET status = $1
+                           WHERE 
+                              id = $2 
+   `,
                   
 getActiveBatch: `
       SELECT 
@@ -35,9 +42,9 @@ getActiveBatch: `
       FROM 
          batches 
       WHERE 
-         application_closure_date > NOW :: DATE ORDER BY created_at desc
+         application_closure_date > NOW() :: DATE ORDER BY created_at desc
       LIMIT 
          1; `
 }
 
-module.exports = applicationsQueries;
+module.exports = {applicationsQueries};
