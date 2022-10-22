@@ -77,10 +77,7 @@ const updateAdmin = async (req, res) => {
     if (!updateValues.length) return;
 
     try {
-
-        const admin = await db.any(`UPDATE admins 
-        SET ${ updateValues.join(', ') } 
-        WHERE id = '${id}'`)
+        const admin = await db.any(queries.updateAdmin, [upload_photo, name, email_address, phone_number, country, address, id])
         return res.status(200).json({
             status: 'Success',
             message: 'Admin Updated',
