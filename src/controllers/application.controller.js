@@ -30,12 +30,19 @@ const addApplication = async(req, res) => {
 
 
 const addStatus = async (req, res) => {
-    let {status} = req.body
+    let {status, user_id} = req.body
     console.log(status)
   try {
    
-    const currentStatus = await db.oneOrNone(applicationsQueries.addApplicationStatus, [status] )
+    const currentStatus = await db.any(` UPDATE
+                                application_entries
+                                SET
+                                status = '${status}'
+                                WHERE
+                                user_id = '${user_id}'
+                                RETURNING *`)
    
+                                console.log(currentStatus)
     return res.status(200).json({
         status:'successful',
         message: 'status added successfully',
@@ -52,12 +59,11 @@ const addStatus = async (req, res) => {
 const getOneUser = async(req, res) => {
     let {email_address } = req.body
     try {
-        const user = await db.any(`SELECT
-        * 
+        const user = await db.any(`SELECT * 
      FROM
         application_entries       
      WHERE 
-        email_address = ${email_address}` )
+        email_address = '${email_address}'` )
         console.log(email_address)
         console.log(user)
         return res.status(200).json({
@@ -70,6 +76,8 @@ const getOneUser = async(req, res) => {
         return error;
     }
 }
+
+
 
 module.exports = {
   addApplication,

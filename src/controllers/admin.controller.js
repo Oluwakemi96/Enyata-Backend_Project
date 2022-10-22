@@ -62,7 +62,36 @@ const adminLogin = async (req, res) => {
     }
 
 }
+
+const updateAdmin = async (req, res) => {
+    let { id } = req.params;
+    let { upload_photo, name, phone_number, country, address } = req.body;
+    let updateValues = [];
+    if (name) updateValues.push(name);
+    if (address) updateValues.push(address);
+    if (phone_number) updateValues.push(phone_number);
+    if (country) updateValues.push(country);
+    if (upload_photo) updateValues.push(upload_photo);
+
+    if (!updateValues.length) return;
+
+    try {
+        const student = await db.any(queries.updateStudent, [upload_photo, name, phone_number, country, address, id])
+        return res.status(200).json({
+            status: 'Success',
+            message: 'Student Updated',
+            data: student
+        })
+    } catch (err) {
+        if (err) {
+            console.log(err)
+            return err;
+        }
+    }
+}
+
 module.exports = {
     adminLogin,
-    registerAdmin
+    registerAdmin,
+    updateAdmin
 }

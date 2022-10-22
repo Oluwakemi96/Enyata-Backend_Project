@@ -63,9 +63,27 @@ const fetchAllUsers = async(req, res) => {
     }
 }
 
+const getOneUser = async(req, res) => {
+    let {email_address } = req.body
+    try {
+        const user = await db.any(userQuery.getUserByEmail, [email_address] )
+        console.log(email_address)
+        console.log(user)
+        return res.status(200).json({
+            status: 'Success',
+            message:'User Fetched Succesfully',
+            data: user
+        });
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
 
 module.exports = {
     registerUsers,
     deleteUser,
-    fetchAllUsers
+    fetchAllUsers,
+    getOneUser
 };

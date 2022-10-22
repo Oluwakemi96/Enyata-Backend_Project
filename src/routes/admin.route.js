@@ -13,6 +13,6 @@ router.post('/adminLogin', admin.adminLogin)
 router.post('/registerAdmin', admin.registerAdmin)
 router.post('/addStatus', applicationEntries.addStatus)
 router.post('/assessments', assessments.composedAssessments)
-router.get('/oneUser', applicationEntries.getOneUser)
+router.get('/oneApplicant', applicationEntries.getOneUser)
 
 module.exports = router;

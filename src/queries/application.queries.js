@@ -29,12 +29,7 @@ const applicationsQueries = {
    //       email_address = $1
    //              `,
 
-   addApplicationStatus: `INSERT 
-                           INTO
-                           application_entries(status)
-                          VALUES($1)
-                          RETURNING *
-   `,
+   
 
    findByEmail: `
       SELECT
