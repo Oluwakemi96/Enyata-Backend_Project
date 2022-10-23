@@ -106,7 +106,38 @@ const getApplicantByBatch = async(req, res) => {
         console.log(error)
         return error;
     }
-}
+  }
+
+  const countAllApplications = async(req, res) => {
+    try {
+      const totalApplications = await db.any(`SELECT COUNT(*) FROM application_entries`)
+      
+      return res.status(200).json({
+         staus: 'successful',
+         message: 'total applications fetched successfully',
+         data: totalApplications
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  const countCurrentApplications = async(req, res) => {
+    try {
+      const currentApplications = await db.oneOrNone(`SELECT COUNT(*) FROM application_entries WHERE
+      batch_id = 'Batch 3.0'`)
+
+      return res.status(200).json({
+         staus: 'successful',
+         message: 'total applications fetched successfully',
+         data: currentApplications
+      })
+
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
 
 module.exports = {
@@ -114,5 +145,7 @@ module.exports = {
   addStatus,
   getOneApplicant,
   fetchAllApplicant,
-  getApplicantByBatch
+  getApplicantByBatch,
+  countAllApplications,
+  countCurrentApplications
 }

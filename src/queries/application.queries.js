@@ -20,15 +20,6 @@ const applicationsQueries = {
       RETURNING *
    `,
 
-   // findByEmail: `
-   //    SELECT
-   //       email_address 
-   //    FROM
-   //       application_entries       
-   //    WHERE 
-   //       email_address = $1
-   //              `,
-
    
    findByEmail: `
    SELECT
@@ -86,7 +77,20 @@ getActiveBatch: `
       WHERE 
          application_closure_date > NOW() :: DATE ORDER BY created_at desc
       LIMIT 
-         1; `
+         1; `,
+
+// countAllApplications: `SELECT 
+//                         COUNT(*) 
+//                      FROM 
+//                         application_entries 
+//                     `,
+
+// countCurrentApplications: `SELECT 
+//                               COUNT(*) 
+//                            FROM 
+//                              application_entries 
+//                            WHERE
+//                               batch_id = 'Batch 3.0'`
 
 }
 

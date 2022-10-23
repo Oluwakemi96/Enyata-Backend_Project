@@ -16,6 +16,9 @@ router.post('/assessments', assessments.composedAssessments)
 router.get('/oneApplicant', applicationEntries.getOneApplicant)
 router.get('/allApplicant', applicationEntries.fetchAllApplicant)
 router.get('/allApplicant/:batch_id', applicationEntries.getApplicantByBatch)
+router.get('/total_applications', applicationEntries.countAllApplications)
+router.get('/current_applications', applicationEntries.countCurrentApplications)
+
 router.patch('/updateAdmin/:id', admin.updateAdmin)
 
 module.exports = router;
