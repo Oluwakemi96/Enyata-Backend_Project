@@ -94,7 +94,7 @@ const fetchAllApplicant = async(req, res) => {
 const getApplicantByBatch = async(req, res) => {
     let {batch_id} = req.body
     try {
-        const applicant = await db.oneOrNone(`SELECT batch_id FROM application_entries WHERE batch_id = '${batch_id}'`)
+        const applicant = await db.any(`SELECT * FROM application_entries WHERE batch_id = '${batch_id}'`)
         console.log(applicant)
         return res.status(200).json({
             status: 'success',
