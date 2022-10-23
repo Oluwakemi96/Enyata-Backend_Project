@@ -92,6 +92,15 @@ getActiveBatch: `
 //                            WHERE
 //                               batch_id = 'Batch 3.0'`
 
+getCurrentBatch: `
+      SELECT 
+         batch_id 
+      FROM 
+         batches 
+      WHERE 
+         application_closure_date > NOW() :: DATE ORDER BY created_at desc
+      LIMIT 
+         1; `
 }
 
-module.exports = {applicationsQueries};
+module.exports = applicationsQueries;

@@ -15,9 +15,12 @@ router.post('/addStatus', applicationEntries.addStatus)
 router.post('/assessments', assessments.composedAssessments)
 router.get('/oneApplicant', applicationEntries.getOneApplicant)
 router.get('/allApplicant', applicationEntries.fetchAllApplicant)
-router.get('/allApplicant/:batch_id', applicationEntries.getApplicantByBatch)
+router.get('/batch_applicant', applicationEntries.getApplicantByBatch)
 router.get('/total_applications', applicationEntries.countAllApplications)
 router.get('/current_applications', applicationEntries.countCurrentApplications)
+router.get('/current_batch', applicationEntries.getActiveBatch)
+router.get('/batch_by_id', batch.batchByBatchId)
+
 
 router.patch('/updateAdmin/:id', admin.updateAdmin)
 

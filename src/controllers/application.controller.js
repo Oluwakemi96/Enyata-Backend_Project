@@ -8,7 +8,6 @@ const addApplication = async(req, res) => {
   let batch = await db.oneOrNone(applicationsQueries.getActiveBatch)
   const batch_id = batch.batch_id
 
-
   let user_id = req.user.user_id
   console.log(user_id)
     try {
@@ -139,6 +138,20 @@ const getApplicantByBatch = async(req, res) => {
     }
   }
 
+  const getActiveBatch = async(req, res) => {
+    try {
+      const currentBatch = await db.oneOrNone(applicationsQueries.getCurrentBatch)
+
+      return res.status(200).json({
+         status: 'successful',
+         message:'current batch fetched successfully',
+         data: currentBatch
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
 
 module.exports = {
   addApplication,
@@ -147,5 +160,6 @@ module.exports = {
   fetchAllApplicant,
   getApplicantByBatch,
   countAllApplications,
-  countCurrentApplications
+  countCurrentApplications,
+  getActiveBatch
 }

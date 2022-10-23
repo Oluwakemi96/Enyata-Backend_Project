@@ -37,7 +37,23 @@ const createBatch = async(req, res) => {
     }
 }
 
+const batchByBatchId = async(req, res) => {
+    let {batch_id} = req.body
+    try {
+        const batch = await db.oneOrNone(queries.getBatchById, [batch_id])
+        return res.status(200).json({
+            status:'success',
+            message:'batch fetched successfully',
+            data: batch
+        })
+        
+    } catch (error) {
+       console.log(error) 
+    }
+}
+
 module.exports = {
     fetchAllBatches,
-    createBatch
+    createBatch,
+    batchByBatchId
 }

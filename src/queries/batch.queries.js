@@ -10,7 +10,13 @@ const queries = {
     `SELECT * FROM batches`,
     findByBatch:
     `SELECT batch_id FROM batches
-    WHERE batch_id = $1`
+    WHERE batch_id = $1`,
+    getBatchById: `SELECT
+                       * 
+                    FROM    
+                       batches
+                    WHERE
+                        batch_id = $1`
 }
 
 
