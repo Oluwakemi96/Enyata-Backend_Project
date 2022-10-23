@@ -94,4 +94,4 @@ getActiveBatch: `
 
 }
 
-module.exports = {applicationsQueries};
+module.exports = applicationsQueries;
