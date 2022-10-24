@@ -1,0 +1,1 @@
+ALTER TABLE application_entries ALTER COLUMN date_of_birth TYPE VARCHAR;
