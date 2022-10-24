@@ -1,0 +1,1 @@
+ALTER TABLE assessments ALTER COLUMN questions TYPE JSON;

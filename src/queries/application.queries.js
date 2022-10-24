@@ -100,7 +100,10 @@ getCurrentBatch: `
       WHERE 
          application_closure_date > NOW() :: DATE ORDER BY created_at desc
       LIMIT 
-         1; `
+         1; `,
+
+
+   getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`,
 }
 
 module.exports = applicationsQueries;
