@@ -30,7 +30,7 @@ const addApplication = async(req, res) => {
 
 
 const addStatus = async(req, res) => {
-    let { status, user_id } = req.body
+    let { status, email_address } = req.body
     console.log(status)
     try {
 
@@ -39,7 +39,7 @@ const addStatus = async(req, res) => {
                                 SET
                                 status = '${status}'
                                 WHERE
-                                user_id = '${user_id}'
+                                user_id = '${email_address}'
                                 RETURNING *`)
 
         console.log(currentStatus)
@@ -59,7 +59,7 @@ const addStatus = async(req, res) => {
 const getOneApplicant = async(req, res) => {
     let { email_address } = req.params
     try {
-        const user = await db.any(`SELECT * 
+        const user = await db.oneOrNone(`SELECT * 
      FROM
         application_entries       
      WHERE 
