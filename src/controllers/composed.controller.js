@@ -3,11 +3,11 @@ const queries = require('../queries/composed.queries')
 // const applicationsQueries = require('../queries/application.queries')
 
 const composedAssessments = async(req, res) => {
-    let {questions, option_a, option_b, option_c, option_d } = req.body
+    let {questions, option_a, option_b, option_c, option_d, answer } = req.body
     // let batch = await db.any(applicationsQueries.getActiveBatch)
     // batch_id = batch[0].batch_id
     try {
-        const assessments = await db.any(queries.postQuestion,[ questions, option_a, option_b, option_c, option_d]);
+        const assessments = await db.any(queries.postQuestion,[ questions, option_a, option_b, option_c, option_d, answer]);
             return res.status(200).json({
                 status: 'Success',
                 message: 'question added',
