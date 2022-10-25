@@ -91,8 +91,30 @@ const updateAdmin = async (req, res) => {
     }
 }
 
+const getOneAdmin = async(req, res) => {
+    let { email_address } = req.params
+    try {
+        const user = await db.oneOrNone(`SELECT * 
+     FROM
+        admins       
+     WHERE 
+        email_address = '${email_address}'`)
+        console.log(email_address)
+        console.log(user)
+        return res.status(200).json({
+            status: 'Success',
+            message: 'admin Fetched Succesfully',
+            data: user
+        });
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
 module.exports = {
     adminLogin,
     registerAdmin,
-    updateAdmin
+    updateAdmin,
+    getOneAdmin
 }
