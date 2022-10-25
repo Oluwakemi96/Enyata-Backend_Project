@@ -90,7 +90,7 @@ getActiveBatch: `
 //                            FROM 
 //                              application_entries 
 //                            WHERE
-//                               batch_id = 'Batch 3.0'`
+//                               batch_id = 'Batch 3.0'`,
 
 getCurrentBatch: `
       SELECT 
