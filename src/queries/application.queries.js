@@ -3,7 +3,7 @@ const applicationsQueries = {
       INSERT 
          INTO 
             application_entries(
-               upload_cv, 
+               upload_CV, 
                user_id, 
                upload_photo, 
                first_name, 
@@ -103,7 +103,7 @@ getCurrentBatch: `
          1; `,
 
 
-   getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`,
+   getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`
 }
 
 module.exports = applicationsQueries;
