@@ -1,16 +1,16 @@
 const db = require('../config/config')
 const queries = require('../queries/composed.queries')
-// const applicationsQueries = require('../queries/application.queries')
+const applicationsQueries = require('../queries/application.queries')
 
 const composedAssessments = async(req, res) => {
-    let {questions, option_a, option_b, option_c, option_d, answer } = req.body
-    // let batch = await db.any(applicationsQueries.getActiveBatch)
-    // batch_id = batch[0].batch_id
+    let {questions, time_allocated} = req.body
+    let batch = await db.any(applicationsQueries.getActiveBatch)
+    batch_id = batch[0].batch_id
     try {
-        const assessments = await db.any(queries.postQuestion,[ questions, option_a, option_b, option_c, option_d, answer]);
+        const assessments = await db.any(queries.postQuestion,[ batch_id, questions, time_allocated]);
             return res.status(200).json({
                 status: 'Success',
-                message: 'question added',
+                message: 'Batch added',
                 data: assessments
             })
         
@@ -20,15 +20,14 @@ const composedAssessments = async(req, res) => {
     }
 }
 
-const getQuestionById = async(req, res) => {
-    let { id } = req.params
+const getQuestions = async(req, res) => {
+    let {batch_id} = req.params
     try {
-        const question = await db.oneOrNone(`SELECT * 
+        const question = await db.any(`SELECT *
      FROM
-        assessments       
-     WHERE 
-        id = '${id}'`)
-        console.log(id)
+        assessments 
+        WHERE batch_id = ${batch_id}      
+     `)
         console.log(question)
         return res.status(200).json({
             status: 'Success',
@@ -43,5 +42,5 @@ const getQuestionById = async(req, res) => {
 
 module.exports = {
     composedAssessments,
-    getQuestionById
+    getQuestions
 }
