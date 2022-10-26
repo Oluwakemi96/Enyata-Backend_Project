@@ -16,3 +16,4 @@ CREATE TABLE IF NOT EXISTS application_entries(
   batch_id VARCHAR(50) references batches(batch_id) ON UPDATE CASCADE ON DELETE RESTRICT,
   status VARCHAR(200) 
 );
+

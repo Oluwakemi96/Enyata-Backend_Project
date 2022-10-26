@@ -3,7 +3,7 @@ const applicationsQueries = {
       INSERT 
          INTO 
             application_entries(
-               upload_CV, 
+               upload_cv, 
                user_id, 
                upload_photo, 
                first_name, 
