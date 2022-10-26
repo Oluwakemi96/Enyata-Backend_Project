@@ -38,7 +38,7 @@ const addStatus = async(req, res) => {
                                 SET
                                 status = '${status}'
                                 WHERE
-                                user_id = '${email_address}'
+                                email_address = '${email_address}'
                                 RETURNING *`)
 
         console.log(currentStatus)
