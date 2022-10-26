@@ -3,8 +3,7 @@ const queries = require('../queries/composed.queries')
 const applicationsQueries = require('../queries/application.queries')
 
 const composedAssessments = async(req, res) => {
-    let {question, time_allocated} = req.body
-   const questions = question.stringify
+    let {questions, time_allocated} = JSON.stringify(req.body)
     let batch = await db.any(applicationsQueries.getActiveBatch)
     batch_id = batch[0].batch_id
     try {
