@@ -1,1 +1,0 @@
-ALTER TABLE application_entries ALTER COLUMN upload_CV DROP NOT NULL;

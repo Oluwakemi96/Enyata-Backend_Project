@@ -1,4 +1,4 @@
-CREATE TABLE batches (
+CREATE TABLE IF NOT EXISTS batches (
     id SERIAL NOT NULL,
     application_closure_date DATE NOT NULL,
     batch_id VARCHAR(50) UNIQUE PRIMARY KEY NOT NULL,

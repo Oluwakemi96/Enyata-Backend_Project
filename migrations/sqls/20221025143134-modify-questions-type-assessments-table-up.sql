@@ -1,1 +1,0 @@
-ALTER TABLE assessments ALTER COLUMN questions TYPE TEXT;
