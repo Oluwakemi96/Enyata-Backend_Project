@@ -3,8 +3,8 @@ const applicationsQueries = {
       INSERT 
          INTO 
             application_entries(
-               upload_CV, 
                user_id, 
+               upload_CV, 
                upload_photo, 
                first_name, 
                last_name,
@@ -17,7 +17,7 @@ const applicationsQueries = {
                batch_id
             )
       VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12)
-      RETURNING *
+      RETURNING * 
    `,
 
    
