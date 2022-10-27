@@ -24,12 +24,12 @@ const composedAssessments = async(req, res) => {
 }
 
 const getQuestions = async(req, res) => {
-    let {batch_id} = req.params
+    let {id} = req.params
     try {
         const question = await db.any(`SELECT *
      FROM
         assessments 
-        WHERE batch_id = ${batch_id}      
+        WHERE id = ${id}      
      `)
         console.log(question)
         return res.status(200).json({
