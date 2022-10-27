@@ -102,8 +102,14 @@ getCurrentBatch: `
       LIMIT 
          1; `,
 
+getAllBatches: `
+      SELECT 
+         batch_id
+      FROM
+         batches
+`
 
-   getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`
+   // getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`
 }
 
 module.exports = applicationsQueries;
