@@ -28,7 +28,7 @@ const sendResults = async(req, res) => {
 
 const fetchAllResults = async(req, res) => {
     try {
-        const result = await db.any(queries.getAllResults)
+        const result = await db.any(queries.getSingleResults)
         return res.status(200).json({
             status: 'Success',
             message:'Results Fetched Succesfully',
