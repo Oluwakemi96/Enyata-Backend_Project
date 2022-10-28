@@ -8,7 +8,7 @@ const queries = {
     `SELECT * FROM assessments_results`,
 
     getSingleResult:
-    `SELECT * FROM assessments_results
+    `SELECT score FROM assessments_results
     WHERE applicant_id = $1`,
 }
 
