@@ -107,8 +107,16 @@ getAllBatches: `
          batch_id
       FROM
          batches
-`
+`,
 
+postScore:
+` UPDATE
+application_entries
+SET
+score = $1
+WHERE
+email_address = $2
+RETURNING *`
    // getDateOnly:`SELECT DATE(date_of_birth) FROM application_entries`
 }
 

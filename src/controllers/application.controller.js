@@ -56,20 +56,14 @@ const addStatus = async(req, res) => {
 
 }
 
-const sendResults = async(req, res) => {
+const addResult = async(req, res) => {
     
-    let { applicant_id, score} = req.body
-
-    let answer = JSON.stringify(req.body.answer)
-    let batch = await db.any(applicationsQueries.getActiveBatch)
-    batch_id = batch[0].batch_id
-    console.log(batch)
-    console.log(batch_id)
+    let {score, email_address} = req.body
     try {
-        const result = await db.any(queries.postAnswer,[batch_id, applicant_id, answer, score ]);
+        const result = await db.any(applicationsQueries.postScore,[score, email_address ]);
             return res.status(200).json({
                 status: 'Success',
-                message: 'answer added',
+                message: 'score added',
                 data: result
             })
         
@@ -202,5 +196,5 @@ module.exports = {
     countCurrentApplications,
     getActiveBatch,
     getAllBatches,
-    sendResults
+    addResult
 }
