@@ -9,7 +9,7 @@ const queries = {
 
     getSingleResult:
     `SELECT score FROM assessments_results
-    WHERE applicant_id = $1`,
+    `,
 }
 
 
