@@ -14,7 +14,7 @@ router.get('/signup', user.fetchAllUsers);
 router.get('/oneUser', user.getOneUser);
 router.post('/application', verifyToken, application.addApplication );
 router.post('/login', userLogin.login)
-router.post('/assessments_results', results.sendResults)
+// router.post('/assessments_results', results.sendResults)
 router.get('/all_assessments_results', results.fetchAllResults)
 router.get('/single_assessment_result/:applicant_id', results.fetchSingleResults)
 

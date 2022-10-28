@@ -1,5 +1,6 @@
 const db = require('../config/config')
 const applicationsQueries = require('../queries/application.queries')
+const queries = require('../queries/results.queries')
 
 
 const addApplication = async(req, res) => {
@@ -53,6 +54,29 @@ const addStatus = async(req, res) => {
         return error;
     }
 
+}
+
+const sendResults = async(req, res) => {
+    
+    let { applicant_id, score} = req.body
+
+    let answer = JSON.stringify(req.body.answer)
+    let batch = await db.any(applicationsQueries.getActiveBatch)
+    batch_id = batch[0].batch_id
+    console.log(batch)
+    console.log(batch_id)
+    try {
+        const result = await db.any(queries.postAnswer,[batch_id, applicant_id, answer, score ]);
+            return res.status(200).json({
+                status: 'Success',
+                message: 'answer added',
+                data: result
+            })
+        
+    } catch (error) {
+        console.log(error)
+        return error
+    }
 }
 
 const getOneApplicant = async(req, res) => {
@@ -177,5 +201,6 @@ module.exports = {
     countAllApplications,
     countCurrentApplications,
     getActiveBatch,
-    getAllBatches
+    getAllBatches,
+    sendResults
 }
