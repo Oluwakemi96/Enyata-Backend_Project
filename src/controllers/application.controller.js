@@ -12,7 +12,7 @@ const addApplication = async(req, res) => {
     console.log(user_id)
     try {
 
-        const applicationDetails = await db.any(applicationsQueries.createApplications, [upload_CV, user_id, upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa, batch_id, ])
+        const applicationDetails = await db.any(applicationsQueries.createApplications, [ user_id, upload_CV,upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa, batch_id, ])
         console.log(applicationDetails)
         return res.status(200).json({
             status: 'successful',
