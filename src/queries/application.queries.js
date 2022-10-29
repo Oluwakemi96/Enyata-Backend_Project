@@ -65,7 +65,7 @@ const applicationsQueries = {
    `,
    
 getAllApplicant: `
-               SELECT * FROM application_entries
+               SELECT * FROM application_entries ORDER BY created_at DESC
                
    `,
                   

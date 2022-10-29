@@ -1,6 +1,5 @@
 const db = require('../config/config')
 const applicationsQueries = require('../queries/application.queries')
-const queries = require('../queries/results.queries')
 
 
 const addApplication = async(req, res) => {
@@ -12,8 +11,15 @@ const addApplication = async(req, res) => {
     let user_id = req.user.user_id
     console.log(user_id)
     try {
+        const existingEmail = await db.oneOrNone(applicationsQueries.findByEmail, [email_address]);
+        if (existingEmail) {
+            return res.status(400).json({
+                status: 'Failed',
+                message: 'Email already exists'
+            })
+        }
 
-        const applicationDetails = await db.any(applicationsQueries.createApplications, [ user_id, upload_CV,upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa, batch_id, ])
+        const applicationDetails = await db.any(applicationsQueries.createApplications, [user_id, upload_CV,upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa, batch_id, ])
         console.log(applicationDetails)
         return res.status(200).json({
             status: 'successful',
@@ -54,23 +60,6 @@ const addStatus = async(req, res) => {
         return error;
     }
 
-}
-
-const addResult = async(req, res) => {
-    
-    let {score, email_address} = req.body
-    try {
-        const result = await db.any(applicationsQueries.postScore,[score, email_address ]);
-            return res.status(200).json({
-                status: 'Success',
-                message: 'score added',
-                data: result
-            })
-        
-    } catch (error) {
-        console.log(error)
-        return error
-    }
 }
 
 const getOneApplicant = async(req, res) => {
@@ -195,6 +184,5 @@ module.exports = {
     countAllApplications,
     countCurrentApplications,
     getActiveBatch,
-    getAllBatches,
-    addResult
+    getAllBatches
 }
