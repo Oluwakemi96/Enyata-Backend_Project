@@ -5,10 +5,11 @@ const queries = require('../queries/results.queries')
 
 const addApplication = async(req, res) => {
 
-    let { upload_CV, upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa } = req.body
+    let { upload_CV, upload_photo, first_name, last_name, date_of_birth, address, university, course_of_study, cgpa } = req.body
     let batch = await db.oneOrNone(applicationsQueries.getActiveBatch)
     const batch_id = batch.batch_id
-
+    
+    let email_address = req.user.email_address
     let user_id = req.user.user_id
     console.log(user_id)
     try { 
