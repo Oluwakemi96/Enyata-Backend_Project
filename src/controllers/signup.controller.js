@@ -83,7 +83,6 @@ const getOneUser = async(req, res) => {
 
 module.exports = {
     registerUsers,
-    deleteUser,
     fetchAllUsers,
     getOneUser
 };

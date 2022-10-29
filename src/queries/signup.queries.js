@@ -30,10 +30,10 @@ const queries = {
       SET first_name = $1, last_name = $2, email_address = $3, phone_number = $4, password = $5
       WHERE id = $6
     `,
-    deleteUser: `
-    DELETE FROM users
-    WHERE id = $1
-    `,
+    // deleteUser: `
+    // DELETE FROM users
+    // WHERE id = $1
+    // `,
     findByEmail: `
     SELECT email_address FROM users
     WHERE email_address = $1

@@ -9,7 +9,7 @@ const { verifyToken } = require('../middleware/auth.middleware');
 
 
 router.post('/signup', user.registerUsers);
-router.delete('/signup/:id', user.deleteUser);
+// router.delete('/signup/:id', user.deleteUser);
 router.get('/signup', user.fetchAllUsers);
 router.get('/oneUser', user.getOneUser);
 router.post('/application', verifyToken, application.addApplication );
