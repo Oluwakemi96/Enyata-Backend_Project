@@ -24,13 +24,10 @@ const composedAssessments = async(req, res) => {
 }
 
 const getQuestions = async(req, res) => {
-    let {id} = req.params
+    let batch = await db.oneOrNone(applicationsQueries.getActiveBatch)
+    batch_id = batch.batch_id
     try {
-        const question = await db.any(`SELECT *
-     FROM
-        assessments 
-        WHERE id = ${id}      
-     `)
+        const question = await db.oneOrNone(queries.getQuestions, [batch_id])
         console.log(question)
         return res.status(200).json({
             status: 'Success',
