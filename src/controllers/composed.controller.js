@@ -27,7 +27,7 @@ const getQuestions = async(req, res) => {
     let batch = await db.oneOrNone(applicationsQueries.getActiveBatch)
     batch_id = batch.batch_id
     try {
-        const question = await db.oneOrNone(queries.getQuestions, [batch_id])
+        const question = await db.any(queries.getQuestions, [batch_id])
         console.log(question)
         return res.status(200).json({
             status: 'Success',
