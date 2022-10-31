@@ -23,10 +23,7 @@ router.get('/current_batch', applicationEntries.getActiveBatch)
 router.get('/batch_by_id', batch.batchByBatchId)
 router.get('/oneAdmin/:email_address', admin.getOneAdmin)
 router.get('/all_batches', applicationEntries.getAllBatches)
-router.post('/results', applicationEntries.addResult)
-
-
-
+router.post('/assessments_results', applicationEntries.addResult)
 router.patch('/updateAdmin/:id', admin.updateAdmin)
 
 module.exports = router;
