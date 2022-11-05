@@ -23,15 +23,8 @@ const registerAdmin = async (req, res) => {
 const adminLogin = async (req, res) => {
     let { email_address, password } = req.body;
     try {
-        // const existingEmail = await db.any(queries.findByEmail, [email_address]);
+        
         const admin = await db.any(queries.getAdminByEmail, [email_address]);
-        console.log(admin);
-        // if (!existingEmail) {
-        //     return res.status(404).json({
-        //         status: 'Failed',
-        //         message: 'No user with email'
-        //     })
-        // }
         const passwordMatch = bcrypt.compareSync(password, admin[0].password);
         if (!passwordMatch) {
             return res.status(400).json({
@@ -42,8 +35,7 @@ const adminLogin = async (req, res) => {
         const sessionToken = jwt.sign(
             {
                 email_address: admin.email_address,
-                password: admin.password,
-
+                password: admin.password
             },
             process.env.JWT_SECRET_KEY
         );
