@@ -12,6 +12,7 @@ router.post('/signup', user.registerUsers);
 // router.delete('/signup/:id', user.deleteUser);
 router.get('/signup', user.fetchAllUsers);
 router.get('/oneUser', user.getOneUser);
+router.get('/users_email', user.fetchAllEmails);
 router.post('/application', verifyToken, application.addApplication );
 router.post('/login', userLogin.login)
 // router.post('/assessments_results', results.sendResults)

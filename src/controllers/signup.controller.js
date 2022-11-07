@@ -69,6 +69,20 @@ const fetchAllUsers = async(req, res) => {
     }
 }
 
+const fetchAllEmails = async(req, res) => {
+    try {
+        const emails = await db.any(userQuery.findAllEmails)
+        return res.status(200).json({
+            status: 'Success',
+            message: 'Emails Fetched Succesfully',
+            data: emails
+        });
+    } catch (error) {
+        console.log(error)
+        return error;
+    }
+}
+
 const getOneUser = async(req, res) => {
     let { email_address } = req.body
     try {
@@ -90,5 +104,6 @@ const getOneUser = async(req, res) => {
 module.exports = {
     registerUsers,
     fetchAllUsers,
-    getOneUser
+    getOneUser,
+    fetchAllEmails
 };

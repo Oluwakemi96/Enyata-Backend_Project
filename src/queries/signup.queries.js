@@ -39,6 +39,8 @@ const queries = {
     WHERE email_address = $1
     `,
 
+    findAllEmails: `SELECT email_address FROM users`,
+
     findById: `
     SELECT id FROM users
     WHERE id = $1
