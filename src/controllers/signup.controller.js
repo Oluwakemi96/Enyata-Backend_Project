@@ -2,9 +2,15 @@ const bcrypt = require('bcrypt')
 const db = require('../config/config')
 const userQuery = require('../queries/signup.queries')
 
-const registerUsers = async (req, res) => {
-    let { first_name, last_name, email_address, phone_number, password, confirm_password} = req.body;
+const registerUsers = async(req, res) => {
+    let { first_name, last_name, email_address, phone_number, password, confirm_password } = req.body;
     try {
+        if (password !== confirm_password) {
+            return res.status(400).json({
+                status: "failed",
+                message: "password mismatch",
+            });
+        }
         const existingEmail = await db.any(userQuery.findByEmail, [email_address]);
         if (existingEmail.length > 0) {
             return res.status(400).json({
@@ -15,7 +21,7 @@ const registerUsers = async (req, res) => {
         password = bcrypt.hashSync(password, 10);
         confirm_password = bcrypt.hashSync(confirm_password, 10)
         const user = await db.any(userQuery.registerUsers, [first_name, last_name, email_address, phone_number, password, confirm_password])
-        // delete user[0].password
+            // delete user[0].password
         return res.status(200).json({
             status: 'Success',
             message: 'User Added',
@@ -41,7 +47,7 @@ const registerUsers = async (req, res) => {
 //                     status: 'Success',
 //                     message: `User with id:${id} deleted`,
 //                 })
-    
+
 //     } catch (err) {
 //         console.log(err)
 //         return err;
@@ -54,7 +60,7 @@ const fetchAllUsers = async(req, res) => {
         console.log(user)
         return res.status(200).json({
             status: 'Success',
-            message:'Users Fetched Succesfully',
+            message: 'Users Fetched Succesfully',
             data: user
         });
     } catch (error) {
@@ -64,14 +70,14 @@ const fetchAllUsers = async(req, res) => {
 }
 
 const getOneUser = async(req, res) => {
-    let {email_address } = req.body
+    let { email_address } = req.body
     try {
-        const user = await db.any(userQuery.getUserByEmail, [email_address] )
+        const user = await db.any(userQuery.getUserByEmail, [email_address])
         console.log(email_address)
         console.log(user)
         return res.status(200).json({
             status: 'Success',
-            message:'User Fetched Succesfully',
+            message: 'User Fetched Succesfully',
             data: user
         });
     } catch (error) {
