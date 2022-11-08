@@ -3,6 +3,7 @@ const db = require("../config/config");
 const { JWT_TOKEN_EXPIRE } = require("../config/jwt");
 const forgetPassword = require("../queries/forgetPassword.queries");
 const bcrypt = require("bcrypt");
+const sendMail = require("../services/send_email")
 
 const forgotPassword = async(req, res) => {
     let { email_address } = req.body;
@@ -30,9 +31,8 @@ const forgotPassword = async(req, res) => {
 
         const resetLink = `http://localhost:8080/reset_password?token=${token}`;
         console.log(resetLink);
-
-        delete user.password;
-        delete user.confirm_password;
+        sendMail(email_address, resetLink)
+        
         return res.status(200).json({
             status: "success",
             message: "a link to reset your password has been sent to your email "
