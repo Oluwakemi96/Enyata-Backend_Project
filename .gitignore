@@ -19,4 +19,4 @@ _thumbs/
 */expressionengine/cache/*
 
 .env
-node_module
+node_modules
