@@ -29,19 +29,14 @@ const forgotPassword = async (req, res) => {
       JWT_TOKEN_EXPIRE
     );
 
-    const resetLink = `http://localhost:8080/forgotpassword/confirm_password
-    {token}`;
+    const resetLink = `http://localhost:8080/forgotpassword/confirm_password?token=${token}`;
     console.log(resetLink);
 
     delete user.password;
     delete user.confirm_password;
     return res.status(200).json({
       status: "success",
-      message: "a link to reset your password has been sent to your email ",
-      data: {
-        user,
-        token
-      }
+      message: "a link to reset your password has been sent to your email "
     });
   } catch (error) {
     return error;
