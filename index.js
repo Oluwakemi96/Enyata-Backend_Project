@@ -19,10 +19,13 @@ app.use(express.urlencoded({ extended: false }))
 //   res.setHeader('Access-Control-Allow-Credentials', true)
 //   next();
 // })
-app.use(cors({
-  origin: "*" ,
-  methods: ["GET", "POST", "DELETE", "PATCH", "UPDATE", "OPTIONS", "PUT"]
-}))
+
+// app.use(cors({
+//   origin: "*" ,
+//   methods: ["GET", "POST", "DELETE", "PATCH", "UPDATE", "OPTIONS", "PUT"]
+// }))
+
+app.use(cors())
 
 app.use(router)
 app.use(adminRouter)
