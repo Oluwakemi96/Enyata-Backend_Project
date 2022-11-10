@@ -1,6 +1,7 @@
 const db = require('../config/config')
 const applicationsQueries = require('../queries/application.queries')
 const queries = require('../queries/results.queries')
+const cloudinary = require('../config/cloudinary')
 
 
 const addApplication = async(req, res) => {
@@ -13,6 +14,17 @@ const addApplication = async(req, res) => {
     console.log(user_id)
     try {
 
+        const cloudImage = await cloudinary.uploader.upload(upload_photo, {
+            folder: "photos",
+            width: 300
+        })
+        const cloudCv = await cloudinary.uploader.upload( upload_CV, {
+            folder: "uploadCV",
+            resource_type: "auto"
+        })
+        uploadCV = cloudCv.secure_url
+        upload_photo = cloudImage.secure_url
+
         const existingEmail = await db.oneOrNone(applicationsQueries.findByEmail, [email_address]);
         if (existingEmail) {
             return res.status(400).json({
@@ -20,7 +32,7 @@ const addApplication = async(req, res) => {
                 message: 'Email already exists'
             })
         }
-
+        
         const applicationDetails = await db.any(applicationsQueries.createApplications, [user_id, upload_CV, upload_photo, first_name, last_name, email_address, date_of_birth, address, university, course_of_study, cgpa, batch_id, ])
         console.log(applicationDetails)
         return res.status(200).json({
